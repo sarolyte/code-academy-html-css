@@ -1,0 +1,101 @@
+@use './vars.scss' as *;
+
+@mixin launch-txt {
+    color: $primary-pink;
+    font-weight: 700;
+    letter-spacing: 10%;
+    font-size: 16px;
+}
+
+@mixin h1-style {
+    font-weight: 900;
+    color: $primary-txt;
+    font-size: 48px;
+    letter-spacing: 0%;
+}
+
+@mixin p-style ($color: $secondary-txt) {
+    font-weight: 400;
+    font-size: 20px;
+    color: $color;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+
+@mixin sign-up-btn {
+    color: $primary-txt;
+    background-color: white;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: center;
+    height: 67px;
+    width: 179px;
+    border: none;
+    border-radius: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin h2-style {
+    font-weight: 500;
+    color: $primary-txt;
+    font-size: 40px;
+    line-height: 48px;
+    margin: 0;
+}
+
+@mixin block-transperant-style {
+    background: linear-gradient(
+        to right,
+        mix($primary-pink, $secondary-orange, 50%) 0%,
+        lighten($secondary-red, 9%) 20%,   
+        lighten($secondary-orange, 5%) 70%,
+        mix($secondary-orange, $secondary-green, 50%) 120%,
+        lighten($secondary-green, 10%) 90%,
+      );
+    background-blend-mode: overlay;
+}
+
+@mixin gloop-style {
+    font-weight: 500;
+    font-size: 12px;
+    color: $secondary-orange;
+}
+
+@mixin h3-style {
+    font-weight: 500;
+    font-size: 20px;
+    color: $primary-txt;
+    margin: 0 0 10px;
+}
+
+@mixin nft-info ($color: $secondary-lighter-txt) {
+    font-weight: 400;
+    font-size: 20px;
+    color: $color;
+    margin: 0;
+}
+
+@mixin bid-style {
+    font-weight: 500;
+    font-size: 12px;
+    color: $secondary-lighter-txt;
+}
+
+@mixin ft-upsell-h2-style {
+    font-weight: 900;
+    color: $primary-txt;
+    font-size: 56px;
+    margin-top: 30px;
+}
+
+@mixin ft-h2-style {
+    color: $secondary-txt;
+    font-weight: 700;
+    letter-spacing: 10%;
+    font-size: 16px;
+}

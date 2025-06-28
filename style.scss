@@ -1,0 +1,708 @@
+@use './utils.scss' as *;
+@use './vars.scss' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html {
+  overflow-x: hidden;
+  font-family: "Inter";
+}
+
+// for minimum width 430px
+
+body {
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  .hamburgerMenu {
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .menuBtn {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      span {
+        width: 30px;
+        height: 4px;
+        background-color: $copyright-txt;
+        margin: 3px 0;
+        border-radius: 2px;
+      }
+    }
+
+    .menuBox {
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      height: fit-content;
+      width: 100%;
+      background: $lighter-background;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      li {
+        margin: 0;
+      }
+
+      .menuItem {
+        display: block;
+        padding: 15px 15px;
+        text-decoration: none;
+        color: $secondary-txt;
+
+        &:hover {
+          background: $primary-pink;
+          color: $lighter-background;
+        }
+      }
+
+      .highlight {
+        color: $primary-pink;
+      }
+    }
+
+      input[type="checkbox"]:checked ~ .menuBox {
+        display: block;
+      }
+  }
+}
+
+.hero {
+  padding: 24px;
+  display: flex;
+  height: 500px;
+  .heroImg {
+    width: 50%;
+    margin: -15% -0% 0 -20%;
+    img {
+      height: 75%;
+    }
+  }
+  .launchSoonTxt {
+    @include launch-txt;
+  }
+  h1{
+    @include h1-style;
+  }
+  .blockTxt {
+    @include p-style;
+  }
+  .gradientWrapper {
+    height: 75px;
+    width: 188px;
+  }
+  .button {
+    @include sign-up-btn;
+  }
+  .button:after {
+    content: '';
+    position: absolute;
+    height: 75px;
+    width: 188px;
+    border-radius: 1000px;
+    background: linear-gradient(
+      to top right,
+      $secondary-orange,
+      $primary-pink,
+      $secondary-red,
+      $secondary-orange,
+      $secondary-green
+    );
+    z-index: -1;
+  }
+  .button:hover {
+    background: linear-gradient(
+      to top right,
+      $secondary-orange,
+      $primary-pink,
+      $secondary-red,
+      $secondary-orange,
+      $secondary-green
+    );
+    color: $lighter-background;
+    cursor: pointer;
+    z-index: 2;
+    transition: 0.2s;
+  }
+}
+
+.upsell {
+  background-image: url(assets/background.svg);
+  background-position-x: 90%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0px 24px;
+  height: 326px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: relative;
+  .bgrOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 326px;
+    background: linear-gradient(to right, #ff39996c 0%, rgba(255, 64, 129, 0) 100%);
+    pointer-events: none;
+  }
+  h2 {
+    @include h2-style;
+    position: relative;
+    z-index: 3;
+  }
+  p {
+    @include p-style($primary-txt);
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.press {
+  padding: 50px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 55px;
+  img {
+    width: 150px;
+  }
+}
+
+.showcase {
+  padding: 0px 24px;
+  margin-bottom: 70px;
+  h2 {
+    @include h2-style;
+  }
+  .showcaseDescr {
+    @include p-style;
+    span {
+      text-decoration: underline;
+    }
+  }
+  .cardContainer {
+    display: flex;
+    gap: 16px; 
+    overflow-x: auto; 
+    padding: 10px 0;
+    scroll-snap-type: x mandatory; /* smooth snapping cards */
+    scrollbar-width: none;
+    margin-right: -24px;
+    .card {
+      width: 290px;
+      scroll-snap-align: start; /* align cards when scrolling */
+      flex: 0 0 auto;
+    }
+    img {
+      margin: 0;
+      display: block;
+    }
+    .cardContent {
+      background-color: $primary-background;
+      margin: 0;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      border-radius: 0 0 16px 16px;
+      justify-content: space-between;
+      padding: 10px 24px 20px;
+      .nftNameInfo {
+        .series {
+          @include gloop-style;
+        }
+        h3 {
+          @include h3-style;
+        }
+        .nftNo {
+          @include nft-info;
+        }
+      }
+      .bidInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .topBid {
+          @include bid-style;
+        }
+        .eth {
+          @include h3-style;
+          &::before {
+            content: '';
+            display: inline-block;
+            background: url(assets/eth.svg) no-repeat center center;
+            background-size: contain;
+            width: 13px;
+            height: 22px; 
+            margin-right: 10px;
+          }
+        }
+        .daysLeft {
+          @include nft-info;
+        }
+      }
+    }
+  }
+}
+
+.footerUpsell {
+  height: 645px;
+  position: relative;
+  overflow: hidden;
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: $primary-background;
+    margin: 0;
+    padding: 0;
+  }
+  .h2Line {
+    position: absolute;
+    top: 53%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $primary-background;
+    z-index: -1;
+  }
+  .ftUpsellFlex {
+    display: flex;
+    padding: 50px 24px 24px;
+  }
+  .ftUpsellImg {
+    width: 50%;
+    margin: 32% -5% 0 0%;
+    img {
+      height: 100%;
+    }
+  }
+  .ftUpsellContent {
+    .launchSoonTxt {
+      @include launch-txt;
+    }
+    h2 {
+      @include ft-upsell-h2-style;
+    }
+    .blockTxt {
+      @include p-style;
+      width: 87%;
+    }
+    .gradientWrapper {
+      height: 75px;
+      width: 188px;
+    }
+    .button {
+      @include sign-up-btn;
+    }
+    .button:after {
+      content: '';
+      position: absolute;
+      height: 75px;
+      width: 188px;
+      border-radius: 1000px;
+      background: linear-gradient(
+        to top right,
+        $secondary-orange,
+        $primary-pink,
+        $secondary-red,
+        $secondary-orange,
+        $secondary-green
+      );
+      z-index: -1;
+    }
+    .button:hover {
+      background: linear-gradient(
+        to top right,
+        $secondary-orange,
+        $primary-pink,
+        $secondary-red,
+        $secondary-orange,
+        $secondary-green
+      );
+      color: $lighter-background;
+      cursor: pointer;
+      z-index: 2;
+      transition: 0.2s;
+    }
+  }
+}
+
+footer {
+  padding: 0 24px;
+  .divider {
+    border-top: solid 2px $primary-background;
+    margin: 0 -24px;
+  }
+  .logoSocialMedia {
+    .ftLogo {
+      margin-bottom: 10px;
+    }
+    margin-top: 60px;
+    p {
+      @include nft-info ($secondary-txt);
+      margin: 16px 0;
+    }
+    .socialMediaBlock {
+      display: flex;
+      justify-content: space-between;
+      width: 118px;
+      .socialIcon {
+        width: 18px;
+      }
+      margin: 20px 0;
+    }
+
+  }
+  .ftInfoBlock {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 50px 0;
+    gap: 15px 0;
+    .ftBlockBigger, .ftBlockSmaller {
+      width: 92px;
+    }
+    .ftBlockBigger {
+      ul{
+        height: 87px;
+      }
+    }
+    .ftBlockSmaller {
+      ul{
+        height: 55px;
+      }
+    }
+    h2 {
+      @include ft-h2-style;
+    }
+    a {
+      text-decoration: none;
+      color: $secondary-txt;
+    }
+    li {
+      list-style: none;
+    }
+    ul {
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+  }
+  .ftBottom {
+    margin-bottom: 70px;
+    .footerLaunch {
+      display: none;
+    }
+  }
+    .copyright {
+      @include nft-info($copyright-txt);
+    }
+    .footerContainer {
+      width: 70%;
+    }
+
+}
+
+// smaller phone
+
+@media screen and (max-width: 429px) {
+  .hero {
+    padding-bottom: 70px;
+  }
+
+  .press {
+    gap: 20px 40px;
+  }
+
+  .footerUpsell {
+    height: 750px;
+    .ftUpsellImg {
+      width: 50%;
+      margin: 110% -5% 0 5%;
+      img {
+        height: 90%;
+      }
+    }
+  }
+
+
+}
+
+// tablet
+
+@media screen and (min-width: 650px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    .hamburgerMenu {
+      .menuBtn {
+        display: none;
+      }
+      .menuBox {
+          display: flex;
+          list-style: none;
+          width: auto;
+          background: transparent;
+          position: unset;
+          box-shadow: none;
+  
+          li {
+            margin: 0;
+            font-weight: 400;
+            font-size: 20px;
+          }
+  
+            .menuItem {
+              display: block;
+              padding: 15px 15px;
+              text-decoration: none;
+              color: $secondary-txt;
+
+              &:hover {
+                background: $primary-pink;
+                color: $lighter-background;
+              }
+            }
+  
+            .highlight {
+              color: $primary-pink;
+            }
+        }
+  
+        input[type="checkbox"]:checked ~ .menuBox {
+          display: none;
+        }
+    }
+  }
+
+  .hero {
+    margin-top: 5%;
+    height: 550px;
+    
+    .blockTxt {
+      width: 86%;
+    }
+    .heroImg {
+      width: 50%;
+      margin: -12% 10% 0 -10%;
+      img {
+        height: 100%;
+      }
+    }
+  }
+  .press {
+    padding: 50px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px 55px;
+    img {
+      width: 180px;
+    }
+  }
+
+  .footerUpsell {
+    height: 500px;
+    .h2Line {
+      position: unset;
+    }
+    .ftUpsellImg {
+      margin: 0% -5% 0 10%;
+      img {
+        height: 105%;
+      }
+    }
+    .ftUpsellContent {
+      .ftUpsellTxt {
+        width: 100%
+      }
+      h2 {
+        margin: 15px 0; 
+      }
+    }
+  }
+}
+
+// computer screen
+
+@media screen and (min-width: 1280px) {
+  body {
+    padding: 40px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    .hamburgerMenu {
+      .menuBtn {
+        display: none;
+      }
+      .menuBox {
+          display: flex;
+          list-style: none;
+          width: auto;
+          background: transparent;
+          position: unset;
+          box-shadow: none;
+  
+          li {
+            margin: 0;
+            font-weight: 400;
+            font-size: 20px;
+          }
+  
+            .menuItem {
+              display: block;
+              padding: 15px 15px;
+              text-decoration: none;
+              color: $secondary-txt;
+
+              &:hover {
+                background: $primary-pink;
+                color: $lighter-background;
+              }
+            }
+  
+            .highlight {
+              color: $primary-pink;
+            }
+        }
+  
+        input[type="checkbox"]:checked ~ .menuBox {
+          display: none;
+        }
+    }
+  }
+  
+  .hero {
+    margin-top: 5%;
+    height: 700px;
+    h1 {
+      font-size: 96px;
+      margin-top: 1%;
+    }
+    .blockTxt {
+      width: 86%;
+    }
+    .heroImg {
+      width: 50%;
+      margin: -8% 10% 0 -10%;
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .upsell {
+    background-position-x: 100%;
+    background-position-x: 100%;
+    background-size: 100%;
+    border-radius: 20px;
+    .bgrOverlay {
+      display: none;
+    }
+    h2 {
+      padding: 0 0 15px 30px;
+    }
+    p {
+      padding: 0 0 60px 30px;
+      margin: 0;
+    }
+  }
+
+  .press {
+    margin: 40px 0;
+    justify-content: space-between;
+    img {
+      width: 200px;
+    }
+  }
+
+  .showcase {
+    .cardContainer {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .footerUpsell {
+    height: 450px;
+    .h2Line {
+      position: unset;
+    }
+    .ftUpsellImg {
+      margin: 0% -20% 0 10%;
+      img {
+        height: 84%;
+      }
+    }
+    .ftUpsellContent {
+      .ftUpsellTxt {
+        width: 100%
+      }
+      h2 {
+        margin: 15px 0; 
+      }
+    }
+  }
+
+  footer {
+    margin-bottom: 30px;
+    .footerContainer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .ftInfoBlock {
+        gap: 15px 50px;
+      }
+    }
+    .ftBottom {
+      display: flex;
+      justify-content: space-between;
+      .footerLaunch {
+        display: block;
+        @include nft-info($copyright-txt);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero {
+    .heroImg {
+      margin: -8% 0 0 0;
+    }
+  }
+
+  .press {
+    img {
+      width: 270px;
+    }
+  }
+
+  .showcase {
+    .cardContainer {
+      justify-content: start;
+      gap: 0 50px;
+    }
+  }
+}
